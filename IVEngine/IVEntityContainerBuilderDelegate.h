@@ -10,6 +10,9 @@
 #import "IVEntityContainer.h"
 
 @protocol IVEntityContainerBuilderDelegate
+
 - (void) containerBuildingFinished:(IVEntityContainer*) container;
+
 - (void) containerBuildingError;
+
 @end

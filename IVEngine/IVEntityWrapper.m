@@ -13,7 +13,7 @@
 
 @synthesize object;
 
-- (id) initWithObject:(id) anObject {
+- (id) initWithObject:(id)anObject {
 	if (self = [super init]) {
 		self.object = anObject;
 	}
@@ -61,7 +61,6 @@
 		objc_property_t property = properties[i];
 		[propArray addObject:[NSString stringWithUTF8String:property_getName(property)]];
 	}
-	
 	return [propArray autorelease];
 }
 

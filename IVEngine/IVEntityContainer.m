@@ -8,9 +8,9 @@
 
 #import "IVEntityContainer.h"
 #import "IVEntityWrapper.h"
-#import "IVLazyProxy.h"
 #import "IVEntityProxy.h"
 #import <objc/runtime.h>
+#import "IVAspect.h"
 #import "IVAspectDefinition.h"
 
 @interface IVEntityContainer()
@@ -36,12 +36,10 @@
 
 - (id) getEntity: (NSString*) name {
 	IVEntityDefinition *definition = [definitions objectForKey:name];
-	
-	if (definition == nil) {
-		return nil;
-	} else {
-		return [self getEntityForDefinition:definition];
-	}
+    if (definition) {
+        return [self getEntityForDefinition:definition];
+    }
+    return nil;
 }
 
 - (void) addObjectInterceptorMap:(NSString *)objName interceptorList:(NSArray *)interceptorList {
@@ -53,12 +51,12 @@
 
 #pragma mark private methods
 - (id) getEntityForDefinition: (IVEntityDefinition*) definition {
-	id object;
+	NSObject *object = nil;
 	
 	if (definition.singleton) {
 		object = [objects objectForKey:definition.name];
 	}
-	
+    
 	if (object == nil) {
 		object = [self buildObject:definition];
 		if (definition.singleton) {
@@ -70,20 +68,13 @@
 }
 
 - (id) buildObject: (IVEntityDefinition*) definition {
-	IVEntityWrapper *wrapper;
-	
-	if (!definition.lazy) {
-		wrapper = [[IVEntityWrapper alloc] initWithClassName:definition.className];
-	} else {
-		id lazyProxy = [[IVLazyProxy alloc] initWithClassName:definition.className];
-		wrapper = [[IVEntityWrapper alloc] initWithObject:lazyProxy];
-		[lazyProxy release];
-	}
+	IVEntityWrapper *wrapper = [[IVEntityWrapper alloc] initWithClassName:definition.className];
 
 	//add propertyReference definitions
 	[self addPropertyReferencesInClass:wrapper.object andDefinition:definition];
 	
 	for (NSString *propName in [wrapper getPropertyNames]) {
+        
 		/* Process references */
 		NSString *reference = [definition.propertyReferences objectForKey:propName];
 		if (reference != nil) {
@@ -143,7 +134,6 @@
 	for(i=0;i<mc;i++){
 		methodName = [NSString stringWithUTF8String:sel_getName(method_getName(mlist[i]))];
 		NSRange iocMapRange = [methodName rangeOfString:@"iocMap_"];
-        
 		if (iocMapRange.location == 0) {
 			NSRange $$location = [methodName rangeOfString:@"__"];
 			propertyName = [methodName substringWithRange: NSMakeRange (iocMapRange.length, $$location.location - iocMapRange.length)];
@@ -177,15 +167,16 @@
             NSObject *aspect = [self getAspectForDefinition:interceptorDefinition];
             
             if (![aspect conformsToProtocol:NSProtocolFromString(@"IVAspect")]) {
-                [NSException raise:@"Invalid Aspect Definition" format:@"Aspect '%@' doesn't confirm to 'IVAspect' protocol", interceptorDefinition.name];
-            }
-            for (NSString * refmethod in refmethodList) {
-                [(IVEntityProxy*)objectProxy interceptMethodStartForSelector:NSSelectorFromString(refmethod)
-                                                  withInterceptorTarget:aspect
-                                                    interceptorSelector:@selector(doBefore:)];
-                [(IVEntityProxy*)objectProxy interceptMethodEndForSelector:NSSelectorFromString(refmethod)
-                                                withInterceptorTarget:aspect
-                                                  interceptorSelector:@selector(doAfter:)];
+                NSLog(@"Aspect '%@' doesn't confirm to 'IVAspect' protocol", interceptorDefinition.name);
+            } else {
+                for (NSString * refmethod in refmethodList) {
+                    [(IVEntityProxy*)objectProxy interceptMethodStartForSelector:NSSelectorFromString(refmethod)
+                                                           withInterceptorTarget:aspect
+                                                             interceptorSelector:@selector(doBefore:)];
+                    [(IVEntityProxy*)objectProxy interceptMethodEndForSelector:NSSelectorFromString(refmethod)
+                                                         withInterceptorTarget:aspect
+                                                           interceptorSelector:@selector(doAfter:)];
+                }
             }
         }
     } else {

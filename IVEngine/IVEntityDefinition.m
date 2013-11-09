@@ -10,7 +10,7 @@
 
 
 @implementation IVEntityDefinition
-@synthesize name, className, singleton, autowire, lazy, propertyReferences,propertyStringValues, propertyNumberValues;
+@synthesize name, className, singleton, autowire, propertyReferences,propertyStringValues, propertyNumberValues;
 
 #pragma mark public methods
 - (void) addPropertyReference:(NSString*) propertyName toObjectName:(NSString*) objectName {
@@ -39,9 +39,8 @@
 {
 	self = [super init];
 	if (self != nil) {
-		self.singleton = YES;
+		self.singleton = NO;
 		self.autowire = NO;
-		self.lazy = NO;
 	}
 	return self;
 }

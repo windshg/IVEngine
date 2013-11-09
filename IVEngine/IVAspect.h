@@ -10,10 +10,11 @@
 
 @protocol IVAspect <NSObject>
 
-@optional
-
+@required
+// invoke before the original invocation
 - (void)doBefore:(NSInvocation *)invocation;
 
+// invoke after the original invocation
 - (void)doAfter:(NSInvocation *)invocation;
 
 @end

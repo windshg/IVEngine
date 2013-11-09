@@ -12,7 +12,6 @@
 #define OBJECT_TAG "entity"
 #define OBJECT_NAME_PROPERTY "id"
 #define OBJECT_CLASSNAME_PROPERTY "class"
-#define OBJECT_LAZY_PROPERTY "lazy"
 #define OBJECT_SINGLETON_PROPERTY "singleton"
 #define PROPERTY_TAG "property"
 #define PROPERTY_NAME_PROPERTY "name"
@@ -54,11 +53,12 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 	NSURLRequest *theRequest=[NSURLRequest requestWithURL:xmlUrl
 											  cachePolicy:NSURLRequestUseProtocolCachePolicy
 										  timeoutInterval:60.0];
-	// create the connection with the request
-	// and start loading the data
-	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+	// create the connection with the request and start loading the data
+	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 	if (!theConnection) {
-		[self.delegate containerBuildingError];
+        if (self.delegate && [(NSObject *)self.delegate respondsToSelector:@selector(containerBuildingError)]) {
+            [self.delegate containerBuildingError];
+        }
 	}
 }
 
@@ -82,12 +82,10 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [connection release];
     xmlFreeParserCtxt(context);
 	xmlCleanupParser();
-	
+    
 	[self.delegate containerBuildingFinished:self.container];
-	[self.container release];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -143,12 +141,6 @@ static void startElementSAX(void *ctx, const xmlChar *localname, const xmlChar *
 		if (className) {
 			builder.objectDefinition.className = (NSString*)className;
 			CFRelease(className);
-		}
-		
-		CFStringRef lazy = createAttributeValue(OBJECT_LAZY_PROPERTY, nb_attributes, attributes);
-		if (lazy) {
-			builder.objectDefinition.lazy = [(NSString*)lazy isEqualToString:@"true"];
-			CFRelease(lazy);
 		}
 		
 		CFStringRef singleton = createAttributeValue(OBJECT_SINGLETON_PROPERTY, nb_attributes, attributes);
@@ -226,7 +218,9 @@ static void	endElementSAX(void *ctx, const xmlChar *localname, const xmlChar *pr
 
 static void errorEncounteredSAX(void *ctx, const char *msg, ...) {
     IVEntityContainerBuilder *builder = (IVEntityContainerBuilder *)ctx;
-	[builder.delegate containerBuildingError];
+    if (builder.delegate && [(NSObject *)builder.delegate respondsToSelector:@selector(containerBuildingError)]) {
+        [builder.delegate containerBuildingError];
+    }
 }
 
 static xmlSAXHandler simpleSAXHandlerStruct = {

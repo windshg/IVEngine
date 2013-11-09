@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contanier>
+    <entity id="superman1" class="SuperMan" singleton="true">
+        <property name="name" stringValue="Bill Gate"></property>
+        <property name="age" numberValue="20"></property>
+    </entity>
+    
+    <entity id="superman2" class="SuperMan" singleton="true">
+        <property name="name" stringValue="Steve Jobs"></property>
+        <property name="age" numberValue="20"></property>
+    </entity>
+    
+    <entity id="superman3" class="SuperMan" singleton="true">
+        <property name="name" stringValue="Mark Zuckberg"></property>
+        <property name="age" numberValue="20"></property>
+    </entity>
+    
+    <entity id="army1" class="Army">
+        <property name="name" stringValue="Microsoft"></property>
+        <property name="captain" ref="superman1"></property>
+    </entity>
+    
+    <entity id="army2" class="Army">
+        <property name="name" stringValue="Apple"></property>
+        <property name="captain" ref="superman2"></property>
+    </entity>
+    
+    <entity id="army3" class="Army">
+        <property name="name" stringValue="NeXT"></property>
+        <property name="captain" ref="superman2"></property>
+    </entity>
+    
+    <entity id="army4" class="Army">
+        <property name="name" stringValue="Facebook"></property>
+        <property name="captain" ref="superman3"></property>
+    </entity>
+
+    <aop:config> 
+        
+        <!-- All methods in all class will be intercepted by LogInterceptor
+        <aspect id="aspect0" class="LogInterceptor">
+            <joinpoint expression="class||*||(*)"></joinpoint>
+        </aspect>
+         -->
+        
+        <aspect id="weaponAspect" class="WeaponInterceptor">
+            <joinpoint expression="class||SuperMan||(attack)"></joinpoint>
+            <joinpoint expression="class||Army||(goToPlace:)"></joinpoint>
+        </aspect>
+        
+        <aspect id="clothesAspect" class="ClothesInterceptor">
+            <joinpoint expression="object||*||(walk)"></joinpoint>
+        </aspect>
+        
+        <aspect id="shoesAspect" class="ShoesInterceptor">
+            <joinpoint expression="object||superman2,superman3||(walk)"></joinpoint>
+        </aspect>
+        
+        <aspect id="glassesAspect" class="GlassesInterceptor">
+            <joinpoint expression="object||superman1,superman2||(walk)"></joinpoint>
+        </aspect>
+        
+    </aop:config>
+    
+</contanier>

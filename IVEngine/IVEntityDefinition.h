@@ -14,7 +14,6 @@
 	NSString *className;
 	BOOL autowire;
 	BOOL singleton;
-	BOOL lazy;
 	NSMutableDictionary *propertyReferences;
 	// TODO: propiedades con valores.... propiedades anidadas... etc. Pensar una clase generica
     NSMutableDictionary *propertyStringValues;
@@ -25,7 +24,6 @@
 @property (retain,nonatomic) NSString *className;
 @property (assign,nonatomic) BOOL autowire;
 @property (assign,nonatomic) BOOL singleton;
-@property (assign,nonatomic) BOOL lazy;
 @property (assign,nonatomic,readonly) NSDictionary *propertyReferences;
 @property (assign,nonatomic,readonly) NSDictionary *propertyStringValues;
 @property (assign,nonatomic,readonly) NSDictionary *propertyNumberValues;

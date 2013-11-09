@@ -108,7 +108,7 @@
         //
         // Intercept the start of the method.
         //
-        
+
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
         for ( int i = 0; i < [methodStartInterceptors count]; i++ ) {
