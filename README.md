@@ -46,7 +46,7 @@ The container tag definition:
 </contanier>
 ```
 
-1. An interceptor named "weaponAspect" as an instance of Class "WeaponInterceptor" should have its methods "deBefore: " and "doAfter:" implemented. It want to intercept the "attack" method in all the instances of "SuperMan", which means that the "doBefore: " method will be called before "attack" called while "doAfter: " will be called right after "attack" called. It also want to intercept the "goToPlace:" method in all instances of "Army".
+1. An interceptor named "weaponAspect" as an instance of Class "WeaponInterceptor" should have its methods "deBefore: " and "doAfter:" implemented as an implementation of protocol "IVAspect". It want to intercept the "attack" method in all the instances of "SuperMan", which means that the "doBefore: " method will be called before "attack" called while "doAfter: " will be called right after "attack" called. It also want to intercept the "goToPlace:" method in all instances of "Army".
 ```XML
 <aspect id="weaponAspect" class="WeaponInterceptor">
     <joinpoint expression="class||SuperMan||(attack)"></joinpoint>
@@ -138,5 +138,5 @@ Once the container builded successfully, you can do anything you want based on t
 }
 ```
 
-##Sumup
+##SumUp
 The project is designed to implement a Spring-like framework in Objective-C on purpose to provide a solution to manage components in enterprise application, especially huge application with so much business logic. It makes good use of the powerful capability of XML and somehow it's not designed for view-based application actually. If you are interested enough to have a test. Please refer to the IVEngineDemo Project and enjoy the beauty of coding.
