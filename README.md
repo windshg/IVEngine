@@ -139,4 +139,4 @@ Once the container builded successfully, you can do anything you want based on t
 ```
 
 ##Sumup
-The project is designed to implement a Spring-like framework in Objective-C on purpose to provide a solution to manage components in enterprise application, especially huge application with so mush business logic. Somehow it's not designed for view-based application actually. If you are interested enough to want to have a test. Please refer to the IVEngineDemo Project and enjoy the beauty of coding.
+The project is designed to implement a Spring-like framework in Objective-C on purpose to provide a solution to manage components in enterprise application, especially huge application with so much business logic. It makes good use of the powerful capability of XML and somehow it's not designed for view-based application actually. If you are interested enough to have a test. Please refer to the IVEngineDemo Project and enjoy the beauty of coding.
