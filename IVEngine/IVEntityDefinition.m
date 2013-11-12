@@ -10,6 +10,7 @@
 
 
 @implementation IVEntityDefinition
+
 @synthesize name, className, singleton, autowire, propertyReferences,propertyStringValues, propertyNumberValues;
 
 #pragma mark public methods

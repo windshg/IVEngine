@@ -21,10 +21,10 @@
     return self;
 }
 
-- (id) initWithNewInstanceOfClass:(Class) class {
+- (id) initWithNewInstanceOfClass:(Class) aClass {
 
     // create a new instance of the specified class
-    id newInstance = [[class alloc] init];
+    id newInstance = [[aClass alloc] init];
 
     // invoke my designated initializer
     [self initWithInstance:newInstance];
@@ -56,7 +56,7 @@
     return [parentObject methodSignatureForSelector:aSelector];
 }
 
-- (void) interceptMethodStartForSelector:(SEL)sel withInterceptorTarget:(id)target interceptorSelector:(SEL)selector {
+- (void) interceptMethodStartForSelector:(SEL)targetSelector withInterceptorTarget:(id)target interceptorSelector:(SEL)interceptSelector {
 
     // make sure the target is not nil
     NSParameterAssert( target != nil );
@@ -64,9 +64,9 @@
     IVInterceptorInfo *info = [[IVInterceptorInfo alloc] init];
 
     // create the interceptorInfo
-    info.interceptedSelector = sel;
+    info.interceptedSelector = targetSelector;
     info.interceptorTarget = target;
-    info.interceptorSelector = selector;
+    info.interceptorSelector = interceptSelector;
 
     // add to our list
     [methodStartInterceptors addObject:info];
@@ -74,7 +74,7 @@
     [info release];
 }
 
-- (void) interceptMethodEndForSelector:(SEL)sel withInterceptorTarget:(id)target interceptorSelector:(SEL)selector {
+- (void) interceptMethodEndForSelector:(SEL)targetSelector withInterceptorTarget:(id)target interceptorSelector:(SEL)interceptSelector {
     
     // make sure the target is not nil
     NSParameterAssert( target != nil );
@@ -82,9 +82,9 @@
     IVInterceptorInfo *info = [[IVInterceptorInfo alloc] init];
     
     // create the interceptorInfo
-    info.interceptedSelector = sel;
+    info.interceptedSelector = targetSelector;
     info.interceptorTarget = target;
-    info.interceptorSelector = selector;
+    info.interceptorSelector = interceptSelector;
     
     // add to our list
     [methodEndInterceptors addObject:info];
@@ -142,7 +142,7 @@
         
         NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc] init];
         
-        for ( int i = 0; i < [methodEndInterceptors count]; i++ ) {
+        for ( int i = [methodEndInterceptors count] - 1; i >= 0 ; i-- ) {
             
             // first search for this selector ...
             IVInterceptorInfo *oneInfo = [methodEndInterceptors objectAtIndex:i];

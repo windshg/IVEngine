@@ -14,16 +14,50 @@
 #import "IVAspectWeaver.h"
 
 @interface IVEntityContainerBuilder : NSObject {
+    
+    ///---------------------------
+    /// @context Context of libxml
+    ///---------------------------
+    
 	xmlParserCtxtPtr context;
     
+    ///---------------------------------------------
+    /// @container The container about to be builded
+    ///---------------------------------------------
+    
 	IVEntityContainer *container;
+    
+    ///----------------------------------------------------------------------------------------
+    /// @objectDefinition The buffer entity definition used for generating the relative entity.
+    ///----------------------------------------------------------------------------------------
+    
 	IVEntityDefinition *objectDefinition;
     
-    IVAspectWeaver *IVAspectWeaver; // used for aop config
+    ///-----------------------------------------------------------------------
+    /// @IVAspectWeaver The component responsible for configuration of aspect.
+    ///-----------------------------------------------------------------------
+    
+    IVAspectWeaver *IVAspectWeaver;
+    
+    ///---------------------------------------------------------------------------------------------
+    /// @aspectDefinition The buffer aspect definition used for generating the relative interceptor.
+    ///---------------------------------------------------------------------------------------------
+    
     IVAspectDefinition *aspectDefinition;
+    
+    ///-----------------------------
+    /// @delegate Callback delegate.
+    ///-----------------------------
     
 	id<IVEntityContainerBuilderDelegate> delegate;
 }
+
+/**
+Build a IVEngine container.
+ 
+ @param aDelegate The callback delegate.
+ 
+ */
 
 - (void) buildContainer: (NSURL*) xmlUrl withDelegate: (id<IVEntityContainerBuilderDelegate>) aDelegate;
 

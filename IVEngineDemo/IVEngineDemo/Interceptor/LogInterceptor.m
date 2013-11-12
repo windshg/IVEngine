@@ -11,11 +11,11 @@
 @implementation LogInterceptor 
 
 - (void)doBefore:(NSInvocation *)invocation {
-    NSLog(@"--> Before \"%@\" %@...", [invocation.target class], NSStringFromSelector(invocation.selector));
+    IVLog(@"--> Before \"%@\" %@...", [invocation.target class], NSStringFromSelector(invocation.selector));
 }
 
 - (void)doAfter:(NSInvocation *)invocation {
-    NSLog(@"--> After \"%@\" %@...", [invocation.target class], NSStringFromSelector(invocation.selector));
+    IVLog(@"--> After \"%@\" %@...", [invocation.target class], NSStringFromSelector(invocation.selector));
 }
 
 @end

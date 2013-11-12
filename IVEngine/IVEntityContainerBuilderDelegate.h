@@ -11,7 +11,20 @@
 
 @protocol IVEntityContainerBuilderDelegate
 
+/**
+Be called once the container builded successfully.
+ 
+ @container The relative container.
+ 
+ */
+
 - (void) containerBuildingFinished:(IVEntityContainer*) container;
+
+
+/**
+Be called once the container builded failedly.
+ 
+ */
 
 - (void) containerBuildingError;
 

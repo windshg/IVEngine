@@ -36,9 +36,7 @@
 
 - (id) getEntity: (NSString*) name {
 	IVEntityDefinition *definition = [definitions objectForKey:name];
-    if (definition) {
-        return [self getEntityForDefinition:definition];
-    }
+    if (definition) return [self getEntityForDefinition:definition];
     return nil;
 }
 

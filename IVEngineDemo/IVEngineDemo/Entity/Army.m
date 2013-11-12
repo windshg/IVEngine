@@ -7,6 +7,7 @@
 //
 
 #import "Army.h"
+#import "SuperMan.h"
 
 @implementation Army
 
@@ -15,15 +16,15 @@
 @synthesize captain = _captain;
 
 - (void)walk {
-    NSLog(@"Army \"%@\" leaded by \"%@\" walk...", self.name, self.captain.name);
+    IVLog(@"<behavior>Army \"%@\" leaded by \"%@\" walk...</behavior>", self.name, self.captain.name);
 }
 
 - (void)attack {
-    NSLog(@"Army \"%@\" leaded by \"%@\" attack...", self.name, self.captain.name);
+    IVLog(@"<behavior>Army \"%@\" leaded by \"%@\" attack...</behavior>", self.name, self.captain.name);
 }
 
 - (void)goToPlace:(NSString *)place {
-    NSLog(@"Army \"%@\" leaded by \"%@\" go to \"%@\"...", self.name, self.captain.name, place);
+    IVLog(@"<behavior>Army \"%@\" leaded by \"%@\" go to \"%@\"...</behavior>", self.name, self.captain.name, place);
 }
 
 - (void)dealloc {

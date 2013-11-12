@@ -39,6 +39,10 @@
 		D3724A49182E8192006E0990 /* ClothesInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3724A48182E8192006E0990 /* ClothesInterceptor.m */; };
 		D3724A4C182E825B006E0990 /* ShoesInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3724A4B182E825B006E0990 /* ShoesInterceptor.m */; };
 		D3724A4F182E82BA006E0990 /* GlassesInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3724A4E182E82BA006E0990 /* GlassesInterceptor.m */; };
+		D386C38A1830E91900ED60A2 /* FTCoreTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D386C3871830E91800ED60A2 /* FTCoreTextStyle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D386C38B1830E91900ED60A2 /* FTCoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D386C3891830E91800ED60A2 /* FTCoreTextView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D386C38D1830EAAE00ED60A2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D386C38C1830EAAE00ED60A2 /* CoreText.framework */; };
+		D386C3971830EE7100ED60A2 /* IVCommonLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D386C3961830EE7100ED60A2 /* IVCommonLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +112,13 @@
 		D3724A4B182E825B006E0990 /* ShoesInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoesInterceptor.m; sourceTree = "<group>"; };
 		D3724A4D182E82BA006E0990 /* GlassesInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlassesInterceptor.h; sourceTree = "<group>"; };
 		D3724A4E182E82BA006E0990 /* GlassesInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlassesInterceptor.m; sourceTree = "<group>"; };
+		D386C3861830E91800ED60A2 /* FTCoreTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCoreTextStyle.h; sourceTree = "<group>"; };
+		D386C3871830E91800ED60A2 /* FTCoreTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCoreTextStyle.m; sourceTree = "<group>"; };
+		D386C3881830E91800ED60A2 /* FTCoreTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCoreTextView.h; sourceTree = "<group>"; };
+		D386C3891830E91800ED60A2 /* FTCoreTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCoreTextView.m; sourceTree = "<group>"; };
+		D386C38C1830EAAE00ED60A2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		D386C3951830EE7100ED60A2 /* IVCommonLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVCommonLogger.h; sourceTree = "<group>"; };
+		D386C3961830EE7100ED60A2 /* IVCommonLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVCommonLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D386C38D1830EAAE00ED60A2 /* CoreText.framework in Frameworks */,
 				D3724A35182E6A1C006E0990 /* libxml2.2.dylib in Frameworks */,
 				D37249E4182E68B1006E0990 /* CoreGraphics.framework in Frameworks */,
 				D37249E6182E68B1006E0990 /* UIKit.framework in Frameworks */,
@@ -138,6 +150,7 @@
 		D37249D5182E68B0006E0990 = {
 			isa = PBXGroup;
 			children = (
+				D386C3851830E91800ED60A2 /* FTCoreText */,
 				D3724A16182E68DE006E0990 /* IVEngine */,
 				D37249E7182E68B1006E0990 /* IVEngineDemo */,
 				D3724A06182E68B1006E0990 /* IVEngineDemoTests */,
@@ -158,6 +171,7 @@
 		D37249E0182E68B1006E0990 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D386C38C1830EAAE00ED60A2 /* CoreText.framework */,
 				D3724A34182E6A1C006E0990 /* libxml2.2.dylib */,
 				D37249E1182E68B1006E0990 /* Foundation.framework */,
 				D37249E3182E68B1006E0990 /* CoreGraphics.framework */,
@@ -171,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				D3724A45182E6DB7006E0990 /* context.xml */,
+				D386C3941830EE6300ED60A2 /* Common */,
 				D3724A36182E6ABD006E0990 /* Entity */,
 				D3724A3B182E6ABD006E0990 /* Interceptor */,
 				D37249F0182E68B1006E0990 /* IVAppDelegate.h */,
@@ -268,6 +283,27 @@
 				D3724A4E182E82BA006E0990 /* GlassesInterceptor.m */,
 			);
 			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		D386C3851830E91800ED60A2 /* FTCoreText */ = {
+			isa = PBXGroup;
+			children = (
+				D386C3861830E91800ED60A2 /* FTCoreTextStyle.h */,
+				D386C3871830E91800ED60A2 /* FTCoreTextStyle.m */,
+				D386C3881830E91800ED60A2 /* FTCoreTextView.h */,
+				D386C3891830E91800ED60A2 /* FTCoreTextView.m */,
+			);
+			name = FTCoreText;
+			path = ../FTCoreText;
+			sourceTree = "<group>";
+		};
+		D386C3941830EE6300ED60A2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D386C3951830EE7100ED60A2 /* IVCommonLogger.h */,
+				D386C3961830EE7100ED60A2 /* IVCommonLogger.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,10 +410,12 @@
 				D37249EE182E68B1006E0990 /* main.m in Sources */,
 				D37249F2182E68B1006E0990 /* IVAppDelegate.m in Sources */,
 				D3724A49182E8192006E0990 /* ClothesInterceptor.m in Sources */,
+				D386C38B1830E91900ED60A2 /* FTCoreTextView.m in Sources */,
 				D37249F8182E68B1006E0990 /* IVViewController.m in Sources */,
 				D3724A30182E68DE006E0990 /* IVEntityDefinition.m in Sources */,
 				D3724A42182E6ABD006E0990 /* LogInterceptor.m in Sources */,
 				D3724A4C182E825B006E0990 /* ShoesInterceptor.m in Sources */,
+				D386C38A1830E91900ED60A2 /* FTCoreTextStyle.m in Sources */,
 				D3724A43182E6ABD006E0990 /* WeaponInterceptor.m in Sources */,
 				D3724A41182E6ABD006E0990 /* SuperMan.m in Sources */,
 				D3724A4F182E82BA006E0990 /* GlassesInterceptor.m in Sources */,
@@ -386,6 +424,7 @@
 				D3724A2F182E68DE006E0990 /* IVEntityContainerBuilder.m in Sources */,
 				D3724A2C182E68DE006E0990 /* IVAspectJoinPoint.m in Sources */,
 				D3724A2D182E68DE006E0990 /* IVAspectWeaver.m in Sources */,
+				D386C3971830EE7100ED60A2 /* IVCommonLogger.m in Sources */,
 				D3724A2B182E68DE006E0990 /* IVAspectDefinition.m in Sources */,
 				D3724A2E182E68DE006E0990 /* IVEntityContainer.m in Sources */,
 			);
@@ -608,6 +647,7 @@
 				D3724A12182E68B1006E0990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3724A13182E68B1006E0990 /* Build configuration list for PBXNativeTarget "IVEngineDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -616,6 +656,7 @@
 				D3724A15182E68B1006E0990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

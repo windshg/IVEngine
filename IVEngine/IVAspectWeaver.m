@@ -12,8 +12,7 @@
 #define EXPRESSION_SIGN_CLASS (@"class")
 
 @interface IVAspectWeaver()
-@property (nonatomic, retain) NSMutableArray *aspectDefinitions;
-@property (nonatomic, assign) IVEntityContainer * container;
+
 @end
 
 @implementation IVAspectWeaver
@@ -31,7 +30,6 @@
 - (void)configureInContainer:(IVEntityContainer *)aContainer {
     self.container = aContainer;
     NSMutableDictionary * objectInterceptorMap = [[NSMutableDictionary alloc] init];
-    
     for (IVAspectDefinition * definition in aspectDefinitions) {
         for (IVAspectJoinPoint *joinPoint in definition.joinPointList) {
             NSArray * objectList = [joinPoint objectList];

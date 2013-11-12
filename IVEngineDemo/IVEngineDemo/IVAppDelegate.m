@@ -8,86 +8,11 @@
 
 #import "IVAppDelegate.h"
 
-#import "SuperMan.h"
-#import "Army.h"
-
 @implementation IVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // build container from code configuration
-    //    [self buildContainerFromCode];
-    
-    // build container from the configuration of context.xml
-	[self buildContainerFromXML];
-    
+{    
     return YES;
-}
-
-// build container from code configuration
-- (void) buildContainerFromCode {
-    
-}
-
-// build container from the configuration of context.xml
-- (void) buildContainerFromXML {
-	NSString *path =[[NSBundle mainBundle] pathForResource:@"context" ofType:@"xml"];
-    if (path) {
-        IVEntityContainerBuilder *builder = [[IVEntityContainerBuilder alloc] init];
-        // method containerBuildingFinished will be called if container builded successfully
-        [builder buildContainer:[NSURL fileURLWithPath:path] withDelegate:self];
-        [builder release];
-    } else {
-        NSLog(@"Configuration XML file does not exist...");
-    }
-}
-
-#pragma mark IVEntityContainerBuilderDelegate
-- (void) containerBuildingFinished:(IVEntityContainer*) container {
-    NSLog(@"----------------------------------------------------------------------------");
-    SuperMan * s1 = [container getEntity:@"superman1"];
-    [s1 walk];
-    [s1 attack];
-    [s1 defense];
-    [s1 fly];
-    NSLog(@"----------------------------------------------------------------------------");
-    Army * a1 = [container getEntity:@"army1"];
-	[a1 walk];
-    [a1 attack];
-    [a1 goToPlace:@"NewYork"];
-    
-    NSLog(@"----------------------------------------------------------------------------");
-    SuperMan * s2 = [container getEntity:@"superman2"];
-    [s2 walk];
-    [s2 attack];
-    [s2 defense];
-    [s2 fly];
-    NSLog(@"----------------------------------------------------------------------------");
-    Army * a2 = [container getEntity:@"army2"];
-	[a2 walk];
-    [a2 attack];
-    [a1 goToPlace:@"Paris"];
-    NSLog(@"-------------------------------------------------------------------------------------");
-    Army * a3 = [container getEntity:@"army3"];
-	[a3 walk];
-    [a3 attack];
-    [a3 goToPlace:@"London"];
-    
-    NSLog(@"----------------------------------------------------------------------------");
-    SuperMan * s3 = [container getEntity:@"superman3"];
-    [s3 walk];
-    [s3 attack];
-    [s3 defense];
-    [s3 fly];
-    NSLog(@"-------------------------------------------------------------------------------------");
-    Army * a4 = [container getEntity:@"army4"];
-    [a4 walk];
-    [a4 attack];
-    [a3 goToPlace:@"Australia"];
-}
-
-- (void) containerBuildingError {
-    NSLog(@"Container build error...");
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

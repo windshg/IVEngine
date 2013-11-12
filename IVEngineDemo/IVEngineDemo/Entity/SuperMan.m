@@ -14,19 +14,19 @@
 @synthesize age = _age;
 
 - (void)walk {
-    NSLog(@"Superman \"%@\" walk...", self.name);
+    IVLog(@"<behavior>Superman \"%@\" walk...</behavior>", self.name);
 }
 
 - (void)attack {
-    NSLog(@"Superman \"%@\" attack...", self.name);
+    IVLog(@"<behavior>Superman \"%@\" attack...</behavior>", self.name);
 }
 
 - (void)defense {
-    NSLog(@"Superman \"%@\" defense...", self.name);
+    IVLog(@"<behavior>Superman \"%@\" defense...</behavior>", self.name);
 }
 
 - (void)fly {
-    NSLog(@"Superman \"%@\" fly...", self.name);
+    IVLog(@"<behavior>Superman \"%@\" fly...</behavior>", self.name);
 }
 
 - (void)dealloc {

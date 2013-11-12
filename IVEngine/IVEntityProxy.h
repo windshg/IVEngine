@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-/*!
-    @class       IVEntityProxy
-    @abstract    The IVEntityProxy is a simple Aspect Oriented Programming like proxy.
- */
 @interface IVEntityProxy : NSProxy {
 
 @protected
@@ -22,38 +18,62 @@
 }
 
 
-/*!
-    @method     initWithInstance:
-    @abstract   Creates a new proxy with using the instance provided as the parameter.
+/**
+Creates a new proxy with using the instance provided as the parameter.
+ 
+ @param anObject The target object.
+ 
  */
+
 - (id) initWithInstance:(id)anObject;
 
-/*!
-    @method     initWithNewInstanceOfClass:
-    @abstract   Creates a new proxy and forwards all calls to a new instance of the specified class
+
+/**
+Creates a new proxy and forwards all calls to a new instance of the specified class
+ 
+ @param aClass The class of target object.
+ 
  */
-- (id) initWithNewInstanceOfClass:(Class) class;
 
-/*!
-    @method     interceptMethodStartForSelector:withInterceptorTarget:interceptorSelector:
-    @abstract   This method will cause the proxy to invoke the interceptor selector on the interceptor
-        target whenever the aSel selector is invoked on this proxy.
-    @discussion The interceptor selector must take exactly one parameter, which will be NSInvocation instance
-        for the invocation that was intercepted.
+- (id) initWithNewInstanceOfClass:(Class) aClass;
+
+
+/**
+ The interceptor selector must take exactly one parameter, which will be NSInvocation instance
+ for the invocation that was intercepted.
+ 
+ @param targetSelector The method be intercepted
+ 
+ @param target The target entity.
+ 
+ @param interceptSelector The method to intercept the target's method.
+ 
  */
-- (void) interceptMethodStartForSelector:(SEL)sel withInterceptorTarget:(id)target interceptorSelector:(SEL)selector;
 
-/*!
- @method     interceptMethodEndForSelector:withInterceptorTarget:interceptorSelector:
- @abstract   This method will cause the proxy to invoke the interceptor selector on the interceptor
-    target after the aSel selector is invoked on this proxy.
- @discussion The interceptor selector must take exactly one parameter, which will be NSInvocation instance
-    for the invocation that was intercepted.
+- (void) interceptMethodStartForSelector:(SEL)targetSelector withInterceptorTarget:(id)target interceptorSelector:(SEL)interceptSelector;
+
+
+/**
+ The interceptor selector must take exactly one parameter, which will be NSInvocation instance
+ for the invocation that was intercepted.
+ 
+ @param targetSelector The method be intercepted
+ 
+ @param target The target entity.
+ 
+ @param interceptSelector The method to intercept the target's method.
+ 
  */
-- (void) interceptMethodEndForSelector:(SEL)sel withInterceptorTarget:(id)target interceptorSelector:(SEL)selector;
 
+- (void) interceptMethodEndForSelector:(SEL)targetSelector withInterceptorTarget:(id)target interceptorSelector:(SEL)interceptSelector;
 
-// Override point for subclassers to implement different invoking behavior
+/**
+Override point for subclassers to implement different invoking behavior
+ 
+ @param anInvocation The raw invocation for the original selector of the target entity.
+ 
+ */
+
 - (void) invokeOriginalMethod:(NSInvocation *)anInvocation;
 
 @end

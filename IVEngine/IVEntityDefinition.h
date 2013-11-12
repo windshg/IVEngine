@@ -8,28 +8,91 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface IVEntityDefinition : NSObject {
 	NSString *name;
 	NSString *className;
-	BOOL autowire;
+	NSInteger autowire;
 	BOOL singleton;
 	NSMutableDictionary *propertyReferences;
-	// TODO: propiedades con valores.... propiedades anidadas... etc. Pensar una clase generica
     NSMutableDictionary *propertyStringValues;
     NSMutableDictionary *propertyNumberValues;
 }
 
+///--------------------------
+/// @name The name of entity.
+///--------------------------
+
 @property (retain,nonatomic) NSString *name;
+
+///--------------------------------------------------
+/// @className The name of Class the entity new from.
+///--------------------------------------------------
+
 @property (retain,nonatomic) NSString *className;
-@property (assign,nonatomic) BOOL autowire;
+
+///---------------------------------------------------------------------------------
+/// @autowire Indicate to the autowire type including "byType", "byName", "default".
+///---------------------------------------------------------------------------------
+
+@property (assign,nonatomic) NSInteger autowire;
+
+///---------------------------------------------------
+/// @singleton Declare whether the entity is singleton
+///---------------------------------------------------
+
 @property (assign,nonatomic) BOOL singleton;
-@property (assign,nonatomic,readonly) NSDictionary *propertyReferences;
-@property (assign,nonatomic,readonly) NSDictionary *propertyStringValues;
-@property (assign,nonatomic,readonly) NSDictionary *propertyNumberValues;
+
+///--------------------------------------------------
+/// @propertyReferences Property and references map.
+///--------------------------------------------------
+
+@property (retain,nonatomic,readonly) NSMutableDictionary *propertyReferences;
+
+///------------------------------------------------------
+/// @propertyStringValues Property and string values map.
+///------------------------------------------------------
+
+@property (retain,nonatomic,readonly) NSMutableDictionary *propertyStringValues;
+
+///-----------------------------------------------------
+/// @propertyNumberValues Property and number value map.
+///-----------------------------------------------------
+
+@property (retain,nonatomic,readonly) NSMutableDictionary *propertyNumberValues;
+
+/**
+ Add ref value to the property.
+ 
+ @param propertyName The name of the property in entity.
+ 
+ @param objectName The entity name.
+ 
+ */
 
 - (void) addPropertyReference:(NSString*) propertyName toObjectName:(NSString*) objectName;
+
+
+/**
+ Add string value to the property.
+ 
+ @param propertyName The name of the property in entity.
+ 
+ @param objectName The entity name.
+ 
+ */
+
 - (void) addPropertyStringValue:(NSString*)propertyName  value:(NSString*)value;
+
+
+/**
+Add number value to the property.
+ 
+ @param propertyName The name of the property in entity.
+ 
+ @param objectName The entity name.
+ 
+ */
+
 - (void) addPropertyNumberValue:(NSString*)propertyName  value:(NSString*)value;
 
 @end

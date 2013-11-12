@@ -15,7 +15,35 @@
     NSMutableArray *aspectDefinitions;
 }
 
+///-------------------------------------------------
+/// @aspectDefinitions Contain all aspect definition
+///-------------------------------------------------
+
+@property (nonatomic, retain) NSMutableArray *aspectDefinitions;
+
+///------------------------------
+/// @container Relative container
+///------------------------------
+
+@property (nonatomic, assign) IVEntityContainer * container;
+
+
+/**
+ Add an aspectDefinition to this aspect weaver
+ 
+ @param aspectDefinition The pointer to the new aspect definition.
+ 
+ */
+
 - (void)addAspectDefinition:(IVAspectDefinition *)aspectDefinition;
+
+
+/**
+ Finish the aop configuration in the inferent container.
+ 
+ @param aContainer The container which accommodate the aop configuration job.
+ 
+ */
 
 - (void)configureInContainer:(IVEntityContainer *)aContainer;
 

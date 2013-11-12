@@ -17,8 +17,22 @@
     SEL interceptorSelector;
 }
 
+///---------------------------------------------
+/// @interceptedSelector The method intercepted.
+///---------------------------------------------
+
 @property (assign, nonatomic) SEL interceptedSelector;
+
+///----------------------------------------------
+/// @interceptedSelector The interceptor's method.
+///----------------------------------------------
+
 @property (assign, nonatomic) SEL interceptorSelector;
+
+///---------------------------------------------
+/// @interceptedSelector The target intercepted.
+///---------------------------------------------
+
 @property (assign, nonatomic) id interceptorTarget;
 
 @end

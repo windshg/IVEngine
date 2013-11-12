@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <contanier>
+    
+    <!--
+     Entity "superman1" is instance of Class "SuperMan" which is singleton. It has a property "name" with string value "Bill Gate" and property "age" with integer value "20".
+     -->
     <entity id="superman1" class="SuperMan" singleton="true">
         <property name="name" stringValue="Bill Gate"></property>
         <property name="age" numberValue="20"></property>
     </entity>
     
+    <!--
+     Entity "army1" is instance of Class "Army" which is not singleton. It has a property "name" with string value "Microsoft" and a property "captain" refer to the entity "superman1".
+     -->
     <entity id="superman2" class="SuperMan" singleton="true">
         <property name="name" stringValue="Steve Jobs"></property>
         <property name="age" numberValue="20"></property>
@@ -38,26 +45,39 @@
     <aop:config> 
         
         <!-- All methods in all class will be intercepted by LogInterceptor
-        <aspect id="aspect0" class="LogInterceptor">
+        <aspect id="logAspect" class="LogInterceptor">
             <joinpoint expression="class||*||(*)"></joinpoint>
         </aspect>
          -->
         
+        <!-- 
+         An interceptor named "weaponAspect" as an instance of Class "WeaponInterceptor" interceptS the "attack" method in all the instances of "SuperMan". It also interceptS the "goToPlace:" method in all instances of "Army".
+         -->
         <aspect id="weaponAspect" class="WeaponInterceptor">
             <joinpoint expression="class||SuperMan||(attack)"></joinpoint>
             <joinpoint expression="class||Army||(goToPlace:)"></joinpoint>
         </aspect>
         
+        <!--
+         An interceptor named "clothesAspect" as an instance of Class "ClothesInterceptor" is defined to intercept the "walk" method in all entities defined before.
+         -->
         <aspect id="clothesAspect" class="ClothesInterceptor">
             <joinpoint expression="object||*||(walk)"></joinpoint>
         </aspect>
         
+        <!--
+         An interceptor named "shoesAspect" as an instance of Class "ShoesInterceptor" is defined to intercept the "walk" method in entities "superman1", "superman2" and "superman3".
+         -->
         <aspect id="shoesAspect" class="ShoesInterceptor">
+            <joinpoint expression="object||superman1||(walk)"></joinpoint>
             <joinpoint expression="object||superman2,superman3||(walk)"></joinpoint>
         </aspect>
         
+        <!--
+         An interceptor named "glassesAspect" as an instance of Class "ShoesInterceptor" is defined to intercept the "fly" method and "attack" method in all entities as instances of "SuperMan" Class.
+         -->
         <aspect id="glassesAspect" class="GlassesInterceptor">
-            <joinpoint expression="object||superman1,superman2||(walk)"></joinpoint>
+            <joinpoint expression="class||SuperMan||(fly),(attack)"></joinpoint>
         </aspect>
         
     </aop:config>

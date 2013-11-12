@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SuperMan.h"
+
+@class SuperMan;
 
 @interface Army : NSObject
 

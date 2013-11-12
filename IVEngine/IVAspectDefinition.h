@@ -12,16 +12,36 @@
 @interface IVAspectDefinition : NSObject {
     NSString *name;
     NSString *className;
-    
-    //dictionary
-    //key: join point expression
-    //value: advice
+    /**
+     element type: IVAspectJoinPoint
+     */
     NSMutableArray *joinPointList;
 }
 
+///---------------------------------------------
+/// @name Indicate to the Intercepter's Name
+///---------------------------------------------
+
 @property (nonatomic, copy) NSString *name;
+
+///---------------------------------------------
+/// @className Indicate to the Intercepter Class
+///---------------------------------------------
+
 @property (nonatomic, copy) NSString *className;
+
+///--------------------------------------
+/// @joinPointList Managing the JoinPoint
+///--------------------------------------
+
 @property (nonatomic, retain) NSMutableArray *joinPointList;
+
+/**
+ Finish the aop configuration in the inferent container.
+ 
+ @param aContainer The container which accommodate the aop configuration job.
+ 
+ */
 
 - (void)addJoinPoint:(IVAspectJoinPoint *)joinPoint;
 

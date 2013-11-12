@@ -11,11 +11,11 @@
 @implementation ClothesInterceptor
 
 - (void)doBefore:(NSInvocation *)invocation {
-    NSLog(@"--> %@ \"%@\" put on clothes...", [invocation.target class], [invocation.target name]);
+    IVLog(@"<clothesAspect>%@ \"%@\" put on clothes...</clothesAspect>", [invocation.target class], [invocation.target name]);
 }
 
 - (void)doAfter:(NSInvocation *)invocation {
-    NSLog(@"--> %@ \"%@\" take off clothes...", [invocation.target class], [invocation.target name]);
+    IVLog(@"<clothesAspect>%@ \"%@\" take off clothes...</clothesAspect>", [invocation.target class], [invocation.target name]);
 }
 
 @end

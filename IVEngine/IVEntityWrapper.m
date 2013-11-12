@@ -32,10 +32,8 @@
 	objc_property_t theProperty = class_getProperty([object class], [aPropertyName UTF8String]);
 	if (theProperty != nil) {
 		type = [NSString stringWithCString:property_getAttributes(theProperty) encoding:NSUTF8StringEncoding];
-		
 		NSUInteger firstPos = [type rangeOfString:@"\""].location + 1;
 		NSUInteger charCount = [[type substringFromIndex:firstPos] rangeOfString:@"\""].location;
-		
 		return [type substringWithRange: NSMakeRange(firstPos, charCount)];
 	} else {
 		return nil;

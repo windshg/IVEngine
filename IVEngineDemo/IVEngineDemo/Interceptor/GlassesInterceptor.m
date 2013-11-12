@@ -11,11 +11,11 @@
 @implementation GlassesInterceptor
 
 - (void)doBefore:(NSInvocation *)invocation {
-    NSLog(@"--> %@ \"%@\" put on glasses...", [invocation.target class], [invocation.target name]);
+    IVLog(@"<glassesAspect>%@ \"%@\" put on glasses...</glassesAspect>", [invocation.target class], [invocation.target name]);
 }
 
 - (void)doAfter:(NSInvocation *)invocation {
-    NSLog(@"--> %@ \"%@\" take off glasses...", [invocation.target class], [invocation.target name]);
+    IVLog(@"<glassesAspect>%@ \"%@\" take off glasses...</glassesAspect>", [invocation.target class], [invocation.target name]);
 }
 
 @end

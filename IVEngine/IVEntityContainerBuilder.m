@@ -34,11 +34,13 @@
 static xmlSAXHandler simpleSAXHandlerStruct;
 
 @interface IVEntityContainerBuilder()
+
 @property (nonatomic, retain) IVEntityContainer *container;
 @property (nonatomic, retain) IVEntityDefinition *objectDefinition;
 @property (nonatomic, retain) IVAspectWeaver *IVAspectWeaver;
 @property (nonatomic, retain) IVAspectDefinition *aspectDefinition;
 @property (nonatomic, retain) id<IVEntityContainerBuilderDelegate> delegate;
+
 @end
 
 
@@ -84,7 +86,6 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     xmlFreeParserCtxt(context);
 	xmlCleanupParser();
-    
 	[self.delegate containerBuildingFinished:self.container];
 }
 
@@ -92,7 +93,6 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     [connection release];
     xmlFreeParserCtxt(context);
 	xmlCleanupParser();
-
 	[self.delegate containerBuildingError];
 }
 
@@ -109,7 +109,6 @@ static CFStringRef createAttributeValue(const char *attributename, int nb_attrib
 		 indexAttribute < nb_attributes; 
 		 ++indexAttribute, index += 5 ) {
 		const xmlChar *localname = attributes[index];
-		
 		if (compareTag(localname, attributename)) {
 			const xmlChar *valueBegin = attributes[index+3];
 			const xmlChar *valueEnd = attributes[index+4];

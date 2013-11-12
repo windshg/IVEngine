@@ -12,11 +12,11 @@
 @implementation WeaponInterceptor
 
 - (void)doBefore:(NSInvocation *)invocation {
-    NSLog(@"--> %@ \"%@\" equip weapon...", [invocation.target class], [invocation.target name]);
+    IVLog(@"<weaponAspect>%@ \"%@\" equip weapon...</weaponAspect>", [invocation.target class], [invocation.target name]);
 }
 
 - (void)doAfter:(NSInvocation *)invocation {
-    NSLog(@"--> %@ \"%@\" relieve weapon...", [invocation.target class], [invocation.target name]);
+    IVLog(@"<weaponAspect>%@ \"%@\" relieve weapon...</weaponAspect>", [invocation.target class], [invocation.target name]);
 }
 
 @end
