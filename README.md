@@ -8,13 +8,15 @@ As once an IOS developer, out of inspiration from Spring,  I decided to make a S
 Anyway, all I want to convey by IVEngine is primarily a principle for software development which is suitable for all kinds of platforms. So if you think the whole idea is useless or even idiotic, you could just skip over the rest part of this page.
 ***
 ##Deployment
-Add the IVEngine Kit to your project.
-As this kit is based on XML syntax parser, so before using this kit, you should add "libxml2.2.dylib" to your "Link Binary With Libraries" and "$SDKROOT/usr/include/libxml2" to your "Header Search Path". 
-New a file named "context.xml" or anything else.
+Add the ``IVEngineKit`` to your project.
+As this kit is based on XML syntax parser, so before using this kit, you should add ``libxml2.2.dylib`` to your ``Link Binary With Libraries`` and ``$SDKROOT/usr/include/libxml2`` to your ``Header Search Path``. 
+New a file named ``context.xml`` or anything else.
 
 ***
 
 ##Introduction
+Before introducing the usage of IVEngineKit. Thanks to the ``FTCoreText`` framework which I use in demo for log exhibition. The IVLog macro defined in the demo is aimed to show the log string in application main view.  The content in this chapter includes two parts, the XML configuration and Objective-C configuration.
+
 ###XML
 Here is the sample context.xml. The entities configured here includes superman1, superman2, superman3 and army1, army2, army3, army4, which follow the intentions bellow:
 
