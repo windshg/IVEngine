@@ -61,20 +61,29 @@ The container tag definition:
 </aspect>
 ```
 
-3. An interceptor named "shoesAspect" as an instance of Class "ShoesInterceptor" is defined to intercept the "walk" method in entities "superman2" and "superman3".
+3. An interceptor named "shoesAspect" as an instance of Class "ShoesInterceptor" is defined to intercept the "walk" method in entities "superman1", "superman2" and "superman3".
 ```XML
 <aspect id="shoesAspect" class="ShoesInterceptor">
+<joinpoint expression="object||superman1||(walk)"></joinpoint>
 <joinpoint expression="object||superman2,superman3||(walk)"></joinpoint>
 </aspect>
 ```
 
-4. An interceptor named "logAspect" as an instance of Class "LogInterceptor" is defined to intercept all methods in all entities. This way is actually not be recommended as it will intercept all the methods including getter and setter.
+4. An interceptor named "glassesAspect" as an instance of Class "ShoesInterceptor" is defined to intercept the "fly" method and "attack" method in all entities as instances of "SuperMan" Class.
+```XML
+<aspect id="glassesAspect" class="GlassesInterceptor">
+<joinpoint expression="class||SuperMan||(fly),(attack)"></joinpoint>
+</aspect>
+```
+
+5. An interceptor named "logAspect" as an instance of Class "LogInterceptor" is defined to intercept all methods in all entities. This way is actually not be recommended as it will intercept all the methods including getter and setter.
 ```XML
 <!-- All methods in all class will be intercepted by LogInterceptor -->
 <aspect id="logAspect" class="LogInterceptor">
-    <joinpoint expression="class||*||(*)"></joinpoint>
+<joinpoint expression="class||*||(*)"></joinpoint>
 </aspect>
 ```
+
 ###Objective-C
 Assume that AppDelegate is the place to test the IVEngineKit. AppDelegate should firstly implement the "IVEntityContainerBuilderDelegate" with selectors:
 ```ObjectiveC
