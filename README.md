@@ -3,14 +3,16 @@ IVEngine
 
 If you are or were a JAVA programmer, you should hear of "Spring" library, which is a very popular framework for managing components. It can make the whole enterprise application more scalable and of better hierarchy by making full use of XML language. To quote the official description of Spring : "Spring helps development teams everywhere build simple, portable,  fast and flexible JVM-based systems and applications".
 
-As once an IOS developer, out of inspiration from Spring,  I decided to make a Spring-like framework in Objective-C for fun. Honestly, I don't think this kit can make any difference in practical IOS development since it seems inefficient and    unnecessary to embed it to a view-based application. However if someday Objective-C will be an option for server side development, which I think impossible as there are already so many options for such as php, python and java, I think IVEngine would offer a favor.
+As once an IOS developer, out of inspiration from Spring,  I decided to make a Spring-like framework in Objective-C for fun. With help of this framework, developer can build a flexible application by managing a XML file in specific grammar. It can both expose the power of XML language and display the relationship among all entities in the whole application more clear, which make a big benefit in heavy-logic application and game. Especially for game development, just image that there are some many objects need to be managed in game application and the hierarchy should be better displayed. IVEngine may actually make a difference. Moreover, if someday Objective-C will be an option for server side development, which I think impossible though as there are already so many options for such as php, python and java, I think IVEngine would offer a favor, too.
 
 Anyway, all I want to convey by IVEngine is primarily a principle for software development which is suitable for all kinds of platforms. So if you think the whole idea is useless or even idiotic, you could just skip over the rest part of this page.
-
+***
 ##Deployment
 Add the IVEngine Kit to your project.
-As this kit is based on XML syntax parser, so before using this kit, you should add libxml2.2.dylib to your "Link Binary With Libraries" and "$SDKROOT/usr/include/libxml2" to your "Header Search Path". 
+As this kit is based on XML syntax parser, so before using this kit, you should add "libxml2.2.dylib" to your "Link Binary With Libraries" and "$SDKROOT/usr/include/libxml2" to your "Header Search Path". 
 New a file named "context.xml" or anything else.
+
+***
 
 ##Introduction
 ###XML
@@ -147,5 +149,7 @@ Once the container builded successfully, you can do anything you want based on t
 }
 ```
 
-##SumUp
+***
+
+##Summary
 The project is designed to implement a Spring-like framework in Objective-C on purpose to provide a solution to manage components in enterprise application, especially huge application with so much business logic. It makes good use of the powerful capability of XML and somehow it's not designed for view-based application actually. If you are interested enough to have a test. Please refer to the IVEngineDemo Project and enjoy the beauty of coding.
